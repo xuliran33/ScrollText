@@ -99,50 +99,46 @@
     if (self.adTitles.count == 0) {
         return;
     }
-    if (index != self.adTitles.count - 1){
+    if (index != self.adTitles.count-1) {
         index++;
     }else{
         index = 0;
     }
-    
     if (index == 0) {
-        self.oneLabel.text = [NSString stringWithFormat:@"%@", self.adTitles[index]];
+        self.oneLabel.text = [NSString stringWithFormat:@"%@",self.adTitles[index]];
+        
     }else{
-        switch (index % 2) {
+        switch (index%2) {
             case 0:
             {
-                self.oneLabel.text = [NSString stringWithFormat:@"%@", self.adTitles[index]];
-                break;
+                self.oneLabel.text = [NSString stringWithFormat:@"%@",self.adTitles[index]];
             }
+                break;
+                
             default:
             {
-                self.twoLabel.text = [NSString stringWithFormat:@"%@", self.adTitles[index]];
-                break;
+                self.twoLabel.text = [NSString stringWithFormat:@"%@",self.adTitles[index]];
+                
             }
+                break;
         }
-        NSLog(@"%d", index);
-        if (index % 2 == 0) {
-           
-            [UIView animateWithDuration:1 animations:^{
-                self.twoLabel.frame = CGRectMake(margin, -ViewHeight, ViewWidth, ViewHeight);
-                self.oneLabel.frame = CGRectMake(margin, 0, ViewWidth, ViewHeight);
-                
-            } completion:^(BOOL finished) {
-                self.twoLabel.frame = CGRectMake(margin, ViewHeight, ViewWidth, ViewHeight);
-                self.twoLabel.text = self.adTitles[index];
-                
-            }];
-        }else{
-            [UIView animateWithDuration:1 animations:^{
-                self.oneLabel.frame = CGRectMake(margin, -ViewHeight, ViewWidth, ViewHeight);
-                self.twoLabel.frame = CGRectMake(margin, 0, ViewWidth, ViewHeight);
-                
-            } completion:^(BOOL finished) {
-                self.oneLabel.frame = CGRectMake(margin, ViewHeight, ViewHeight, ViewHeight);
-                self.oneLabel.text = self.adTitles[index];
-            }];
-            
-        }
+        
+    }
+    
+    if (index%2 == 0) {
+        [UIView animateWithDuration:1 animations:^{
+            self.oneLabel.frame = CGRectMake(margin, 0, ViewWidth, ViewHeight);
+            self.twoLabel.frame = CGRectMake(margin, -ViewHeight, ViewWidth, ViewHeight);
+        } completion:^(BOOL finished){
+            self.twoLabel.frame = CGRectMake(margin, ViewHeight, ViewWidth, ViewHeight);
+        }];
+    }else{
+        [UIView animateWithDuration:1 animations:^{
+            self.twoLabel.frame = CGRectMake(margin, 0, ViewWidth, ViewHeight);
+            self.oneLabel.frame = CGRectMake(margin, -ViewHeight, ViewWidth, ViewHeight);
+        } completion:^(BOOL finished){
+            self.oneLabel.frame = CGRectMake(margin, ViewHeight, ViewWidth, ViewHeight);
+        }];
     }
 }
 
